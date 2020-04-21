@@ -1,0 +1,22 @@
+@import "base/normalize";
+@import "base/mixins";
+@import "base/color";
+@import "base/helpers";
+
+@import "components/button";
+@import "components/journo-list-nav";
+@import "components/journo-list";
+
+.our-journalists {
+
+    @supports(display:grid){
+        .js-enabled & {
+            padding-bottom: 3rem;
+            .journo-list li:not(:first-child){
+                display: none;
+            }
+        }
+    }
+    
+
+}

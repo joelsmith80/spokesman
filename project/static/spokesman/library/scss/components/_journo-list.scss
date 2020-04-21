@@ -1,0 +1,34 @@
+.journo-list {
+
+    @keyframes slideInFromLeft {
+        0% {
+          transform: translateX(-30%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+    }
+
+    .title {
+        animation: 0.5s ease-out 0s 1 slideInFromLeft;
+        animation-duration: 1s;
+        position: relative;
+        &:after {
+            animation: 0.5s ease-out 0s 1 slideInFromLeft;
+            background: $red;
+            border-top: 2px solid #353535;
+            bottom: -1rem;
+            content: '';
+            display: block;
+            height: 0.6rem;
+            right: -0.5rem;
+            position: absolute;
+            width: 1000%;
+        }
+    }
+
+    p {
+        animation: 1s ease-out 0s 1 slideInFromLeft;
+    }
+
+}

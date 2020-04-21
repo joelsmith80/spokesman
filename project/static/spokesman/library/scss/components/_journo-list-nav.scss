@@ -1,0 +1,30 @@
+.journo-list-menu {
+    img {
+        height: 5rem;
+    }
+}
+
+.js-enabled {
+
+    .journo-list-nav {
+        bottom: 0;
+        height: 5rem;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+    }
+
+    .journo-list-menu {
+        background: red;
+        li {
+            float: left;
+        }
+        /*@supports(display:grid){
+            display: grid;
+            grid-row: 1fr;
+            grid-auto-columns: auto;
+        }*/
+    }
+
+}
