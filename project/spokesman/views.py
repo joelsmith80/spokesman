@@ -1,4 +1,13 @@
 from django.shortcuts import render
 
+from .models import Helper
+
 def home(request):
-    return render(request, 'home.html')
+
+    journoList = Helper.get_journo_list()
+    
+    content = {
+        'journoList': journoList
+    }
+
+    return render(request, 'home.html',content)

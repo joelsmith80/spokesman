@@ -23,38 +23,30 @@
         <section class="our-journalists pb1 pt1 ph3 ph6-m ph7-l pt4 relative">
             
             <h2 class="vh">{% trans "Our Journalists" %}</h2>
-            <nav id="journo-list-nav" class="journo-list-nav">
-                <ul id="journo-list-menu" class="journo-list-menu cf">
-                    <li><a href="#tinsley" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/_JESSE_TINSLEY_NEWSROOM_SCRAPBOOK_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Jesse Tinsley</a></li>
-                    <li><a href="#meehan" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/MEEHAN2_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Jim Meehan</a></li>
-                    <li><a href="#chareunsy" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/DON_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Don Chareunsy</a></li>
-                    <li><a href="#epperly" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/EMMA2_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Emma Epperly</a></li>
-                    <li><a href="#podplesky" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/AZARIA_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Azaria Podplesky</a></li>
-                    <li><a href="#edelen" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/AMY_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Amy Edelen</a></li>
-                    <li><a href="#shanks" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/ADAM_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Adam Shanks</a></li>
-                    <li><a href="#vestal" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/VESTAL3_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Shawn Vestal</a></li>
-                    <li><a href="#dreher" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/ARIELLE_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Arielle Dreher</a></li>
-                    <li><a href="#camden" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/CAMDEN_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Jim Camden</a></li>
-                    <li><a href="#quinn" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/MOLLY_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Molly Quinn</a></li>
-                    <li><a href="#curley" data-thumb-src="https://media.spokesman.com/photos/2020/03/25/ROB_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857">Rob Curley</a></li>
+
+            {% if journoList %}
+                <nav id="journo-list-nav" class="journo-list-nav">
+                
+                    <ul id="journo-list-menu" class="journo-list-menu cf">
+                        {% for j in journoList %}
+                            <li><a href="#{{ j.slug }}" data-thumb-src="{{ j.image }}">{{ j.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+
+                <ul id="journo-list" class="journo-list list">
+                    {% for j in journoList %}
+                        <li id="{{ j.slug }}" class="relative lh-title pb3 cf">
+                            <header class="fr-m fr-l w-60-ns pl3-m pl3-l mb2">
+                                <h3 class="title tr b mb4 mt3">{{ j.name }}</h3>
+                                <p class="tr f6">{{ j.text }}</p>
+                            </header>
+                            <img src="{{ j.image }}" alt="{{ j.name }}" class="w-40-ns relative">
+                        </li>
+                    {% endfor %}
                 </ul>
-            </nav>
-
-          {% if journoList %}
-
-            <ul id="journo-list" class="journo-list list">
-
-                {% for j in journoList %}
-                    <li id="tinsley" class="relative lh-title pb3 cf">
-                        <header class="fr-m fr-l w-60-ns pl3-m pl3-l mb2">
-                            <h3 class="title tr b mb4 mt3">Jesse Tinsley</h3>
-                            <p class="tr f6">Meet Jesse Tinsley. As a certified drone pilot, this veteran Spokesman-Review photographer often can be seen capturing beautiful aerial photographs of our region. Sometimes though, the job requires getting down with the dogs.</p>
-                        </header>
-                        <img src="https://media.spokesman.com/photos/2020/03/25/_JESSE_TINSLEY_NEWSROOM_SCRAPBOOK_t450.jpg?003ad6aeea675b15dadc8a2e7a30b417f5829857" alt="Jesse Tinsley" class="w-40-ns relative">
-                    </li>
-                {% endfor %}
-          </ul>
-          {% endif %}
+            
+            {% endif %}
       
         </section>
       
