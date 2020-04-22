@@ -9,33 +9,23 @@ var jpsJournoList = (function(){
     let carouselStopped = false;
 
     function cacheDom(){
-        DOM.body = document.body;
-        DOM.nav = document.getElementById('journo-list-nav');
-        DOM.navMenu = document.getElementById('journo-list-menu');
-        DOM.navMenuItems = document.querySelectorAll('#journo-list-menu li');
-        DOM.navMenuLinks = document.querySelectorAll('#journo-list-menu a');
-        DOM.navMenuItemLast = DOM.navMenuItems[DOM.navMenuItems.length - 1];
+        DOM.body = document.body;    
         DOM.journoList = document.getElementById('journo-list');
         DOM.journoListItems = document.querySelectorAll('#journo-list li');
         DOM.firstJournoListItem = document.querySelector('#journo-list li');
         DOM.jsHide = document.querySelectorAll('.js-hide');
         DOM.carouselButton = document.getElementById('carousel-button');
+        cacheMenuItems();
     }
 
-    function bindEvents(){
-        DOM.navMenuLinks.forEach(item => {
-            item.addEventListener('click',handleNavClick);
-        });
+    function bindEvents(){ 
+        bindMenuItems();
         window.addEventListener("load", function(){
             updateValues();
             if( windowWidth > navWidth ){
                 let factor = windowWidth / navWidth;
                 cloneMenuItems(factor);
             }
-        });
-        DOM.navMenuLinks.forEach(function(item){
-            item.addEventListener('mouseover',pauseCarousel);
-            item.addEventListener('mouseout',resumeCarousel);
         });
         DOM.carouselButton.addEventListener('click',handleButtonClick);
     }
@@ -44,12 +34,10 @@ var jpsJournoList = (function(){
         DOM.firstJournoListItem.classList.add('active');
         DOM.body.classList.add('js-enabled');
         addImgsToNav();
-        // setContainerMinHeight();
         DOM.jsHide.forEach(function(item){
             item.classList.add('vh');
         });
         startCarousel();
-
     }
 
     function updateValues(){
@@ -67,8 +55,29 @@ var jpsJournoList = (function(){
         }
     }
 
+    function cacheMenuItems(){
+        DOM.nav = document.getElementById('journo-list-nav');
+        DOM.navMenu = document.getElementById('journo-list-menu');
+        DOM.navMenuItems = document.querySelectorAll('#journo-list-menu li');
+        DOM.navMenuLinks = document.querySelectorAll('#journo-list-menu a');
+    }
+
+    function bindMenuItems(){
+        DOM.navMenuLinks.forEach(item => {
+            item.addEventListener('click',handleNavClick);
+        });
+        DOM.navMenuLinks.forEach(function(item){
+            item.addEventListener('mouseover',pauseCarousel);
+            item.addEventListener('mouseout',resumeCarousel);
+        });
+    }
+
     function handleNavClick(e){
         e.preventDefault();
+        DOM.navMenuLinks.forEach(function(item){
+            item.classList.remove('active');
+        });
+        this.classList.add('active');
         DOM.journoListItems.forEach(function(item){
             item.style.display = 'none';
             item.classList.remove('active');
@@ -105,21 +114,6 @@ var jpsJournoList = (function(){
       
     }
 
-    function setContainerMinHeight(){
-        let height = 0;
-        let i = 0;
-        DOM.journoListItems.forEach(function(item){
-            item.style.display = 'block';
-            let isActive = item.classList.contains('active');
-            let thisHeight = item.offsetHeight;
-            height = thisHeight > height ? thisHeight : height;
-            if(!isActive){
-                item.style.display = 'none';
-            }
-        });
-        DOM.journoList.style.height = height + 'px';
-    }
-
     function cloneMenuItems( num_times ){
         num_times = Math.floor(num_times);
         for( i = 0; i <= num_times; i++ ){
@@ -129,6 +123,8 @@ var jpsJournoList = (function(){
             });
         }
         DOM.navMenu.style.width = '10000px';
+        cacheMenuItems();
+        bindMenuItems();
     }
 
     function handleButtonClick(e){

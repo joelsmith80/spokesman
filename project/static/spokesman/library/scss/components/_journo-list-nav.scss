@@ -52,13 +52,9 @@
             }
         }
     }
-    
-
-    
 
     .journo-list-menu {
         background: red;
-        // left: 0;
         position: absolute;
         // width: 10000px;
         display: inline-block;
@@ -71,6 +67,39 @@
         }
         a {
             display: block;
+            overflow: hidden;
+            position: relative;
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                box-shadow: none;
+                transition: box-shadow .1s ease;
+            }
+            &:hover:after {
+                box-shadow: inset 0 0 0 2px $red;
+            }
+            img {
+                transition: transform .25s ease;
+            }
+            &:hover {
+                img {
+                    transform: scale(1.05);
+                }
+            }
+            &.active {
+                &:hover {
+                    img {
+                        transform: scale(1);
+                    }
+                }
+                &:after {
+                    box-shadow: inset 0 0 0 4px $red;
+                }
+            }
         }
     }
 

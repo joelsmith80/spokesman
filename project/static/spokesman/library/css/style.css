@@ -397,6 +397,33 @@ p {
 }
 .js-enabled .journo-list-menu a {
   display: block;
+  overflow: hidden;
+  position: relative;
+}
+.js-enabled .journo-list-menu a:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: none;
+  transition: box-shadow 0.1s ease;
+}
+.js-enabled .journo-list-menu a:hover:after {
+  box-shadow: inset 0 0 0 2px #aa1731;
+}
+.js-enabled .journo-list-menu a img {
+  transition: transform 0.25s ease;
+}
+.js-enabled .journo-list-menu a:hover img {
+  transform: scale(1.05);
+}
+.js-enabled .journo-list-menu a.active:hover img {
+  transform: scale(1);
+}
+.js-enabled .journo-list-menu a.active:after {
+  box-shadow: inset 0 0 0 4px #aa1731;
 }
 
 @keyframes titleSlideOutIn {
