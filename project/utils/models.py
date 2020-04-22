@@ -13,7 +13,7 @@ class Importer(models.Model):
         path = settings.APPS_DIR
         data = None
 
-        with open( os.path.join(path,file)) as f:
+        with open( os.path.join(path,file), encoding='utf-8' ) as f:
             data = json.load(f)
 
         return data
