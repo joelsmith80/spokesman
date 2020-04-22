@@ -7,6 +7,8 @@
 @import "components/journo-list-nav";
 @import "components/journo-list";
 
+@import "plugins/infinite-carousel";
+
 .our-journalists {
 
     @supports(display:grid){

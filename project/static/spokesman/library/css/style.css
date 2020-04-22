@@ -358,13 +358,25 @@ p {
   position: absolute;
   width: 100%;
 }
+.js-enabled .journo-list-nav .inner {
+  background: red;
+  position: absolute;
+  width: 10000px;
+}
 .js-enabled .journo-list-menu {
   background: red;
+  position: absolute;
+  display: inline-block;
+  float: left;
+  width: auto;
 }
 .js-enabled .journo-list-menu li {
   display: block;
   float: left;
   list-style: none;
+}
+.js-enabled .journo-list-menu a {
+  display: block;
 }
 
 @keyframes titleSlideOutIn {
@@ -466,6 +478,24 @@ p {
   display: none;
 }
 
+/*.infinite-carousel-shell {
+  overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.infinite-carousel-group {
+  height: 100%;
+}
+
+.infinite-carousel-vertical {
+  width: 100%;
+}
+
+.infinite-carousel-horizontal .infinite-carousel-group-item {
+  float: left;
+  height: 100%;
+}*/
 @supports (display: grid) {
   .js-enabled .our-journalists {
     padding-bottom: 4rem;

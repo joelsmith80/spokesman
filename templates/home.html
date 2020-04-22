@@ -11,6 +11,7 @@
     <title>Spokesman-Review Demo</title>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'spokesman/library/css/style.css' %}">
+    <script src="{% static 'spokesman/library/js/infinite-carousel.js' %}"></script>
     <script src="{% static 'spokesman/library/js/app.js' %}"></script>
 </head>
 
@@ -27,11 +28,13 @@
             {% if journoList %}
                 
                 <nav id="journo-list-nav" class="journo-list-nav pl3 mb4">
-                    <ul id="journo-list-menu" class="journo-list-menu cf list">
-                        {% for j in journoList %}
-                            <li><a href="#{{ j.slug }}" data-thumb-src="{{ j.image }}">{{ j.name }}</a></li>
-                        {% endfor %}
-                    </ul>
+                    
+                        <ul id="journo-list-menu" class="journo-list-menu cf list">
+                            {% for j in journoList %}
+                                <li><a href="#{{ j.slug }}" data-thumb-src="{{ j.image }}">{{ j.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    
                 </nav>
 
                 <ul id="journo-list" class="journo-list list">
