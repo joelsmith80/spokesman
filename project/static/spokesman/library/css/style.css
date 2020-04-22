@@ -516,9 +516,15 @@ p {
   float: left;
   height: 100%;
 }*/
+.our-journalists .carousel-buttons {
+  display: none;
+}
 @supports (display: grid) {
   .js-enabled .our-journalists {
     padding-bottom: 5.25rem;
+  }
+  .js-enabled .our-journalists .carousel-buttons {
+    display: block;
   }
 }
 
