@@ -2,7 +2,7 @@ from .base import *
 
 ALLOWED_HOSTS = [
     '207.38.86.214',
-    'http://jps-spokesman.herokuapp.com/',
+    'jps-spokesman.herokuapp.com',
     '127.0.0.1',
     'localhost',
 ]
