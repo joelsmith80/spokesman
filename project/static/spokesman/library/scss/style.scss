@@ -7,23 +7,4 @@
 @import "components/journo-list-nav";
 @import "components/journo-list";
 
-@import "plugins/infinite-carousel";
-
-.our-journalists {
-
-    .carousel-buttons {
-        display: none;
-    }
-
-    @supports(display:grid){
-        
-        .js-enabled & {
-            padding-bottom: 5.25rem; // must correspond with nav height
-            .carousel-buttons {
-                display: block;
-            }
-        }
-    }
-    
-
-}
+@import "pages/main";

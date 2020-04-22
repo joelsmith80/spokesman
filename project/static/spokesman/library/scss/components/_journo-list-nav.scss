@@ -1,3 +1,4 @@
+// base styles for this component
 .journo-list-menu {
     list-style: disc;
     margin: 0;
@@ -13,8 +14,10 @@
     }
 }
 
+// enhancing for browsers with javascript
 .js-enabled {
 
+    // nav goes to the bottom of the section
     .journo-list-nav {
         bottom: 1.25rem;
         height: 5rem;
@@ -25,38 +28,15 @@
         position: absolute;
         width: 100%;
         .inner {
-            background: red;
             position: absolute;
             width: 10000px;
         }
     }
 
-    p.carousel-buttons {
-        bottom: 0;
-        font-size: 0.7rem;
-        left: 0;
-        line-height: 1;
-        position: absolute;
-        text-align: center;
-        width: 100%;
-        button {
-            -moz-appearance: none;
-            -webkit-appearance: none;
-            appearance: none;
-            background: none;
-            border: none;
-            color: $red;
-            &:hover,
-            &:focus {
-                text-decoration: underline;
-            }
-        }
-    }
-
+    // simple text menu gets repurposed as a carousel
     .journo-list-menu {
         background: red;
         position: absolute;
-        // width: 10000px;
         display: inline-block;
         float: left;
         width: auto;

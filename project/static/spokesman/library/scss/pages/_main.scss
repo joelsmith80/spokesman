@@ -1,0 +1,36 @@
+// the main section with the carousel
+.our-journalists {
+    .js-enabled & {
+        padding-bottom: 5.25rem; // attn: must correspond with nav height
+        .carousel-buttons {
+            display: block;
+        }
+    }
+}
+
+// buttons for stopping/starting the carousel
+p.carousel-buttons {
+    bottom: 0;
+    display: none;
+    font-size: 0.7rem;
+    left: 0;
+    line-height: 1;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    button {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background: none;
+        border: none;
+        color: $red;
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+    .js-enabled & {
+        display: block;
+    }
+}

@@ -359,29 +359,8 @@ p {
   width: 100%;
 }
 .js-enabled .journo-list-nav .inner {
-  background: red;
   position: absolute;
   width: 10000px;
-}
-.js-enabled p.carousel-buttons {
-  bottom: 0;
-  font-size: 0.7rem;
-  left: 0;
-  line-height: 1;
-  position: absolute;
-  text-align: center;
-  width: 100%;
-}
-.js-enabled p.carousel-buttons button {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background: none;
-  border: none;
-  color: #aa1731;
-}
-.js-enabled p.carousel-buttons button:hover, .js-enabled p.carousel-buttons button:focus {
-  text-decoration: underline;
 }
 .js-enabled .journo-list-menu {
   background: red;
@@ -448,22 +427,6 @@ p {
     transform: translateX(0);
   }
 }
-@keyframes textFadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
 @keyframes wholeThingSlideOutIn {
   0% {
     transform: translateX(0%);
@@ -513,11 +476,6 @@ p {
   animation: 0.75s ease-out 0s 1 textSlideOutIn;
 }
 
-.js-enabled {
-  /*.journo-list li:not(:first-child){
-      display: none;
-  }*/
-}
 .js-enabled .journo-list li {
   display: block;
 }
@@ -525,34 +483,36 @@ p {
   display: none;
 }
 
-/*.infinite-carousel-shell {
-  overflow: hidden;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+.js-enabled .our-journalists {
+  padding-bottom: 5.25rem;
+}
+.js-enabled .our-journalists .carousel-buttons {
+  display: block;
 }
 
-.infinite-carousel-group {
-  height: 100%;
-}
-
-.infinite-carousel-vertical {
+p.carousel-buttons {
+  bottom: 0;
+  display: none;
+  font-size: 0.7rem;
+  left: 0;
+  line-height: 1;
+  position: absolute;
+  text-align: center;
   width: 100%;
 }
-
-.infinite-carousel-horizontal .infinite-carousel-group-item {
-  float: left;
-  height: 100%;
-}*/
-.our-journalists .carousel-buttons {
-  display: none;
+p.carousel-buttons button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  color: #aa1731;
 }
-@supports (display: grid) {
-  .js-enabled .our-journalists {
-    padding-bottom: 5.25rem;
-  }
-  .js-enabled .our-journalists .carousel-buttons {
-    display: block;
-  }
+p.carousel-buttons button:hover, p.carousel-buttons button:focus {
+  text-decoration: underline;
+}
+.js-enabled p.carousel-buttons {
+  display: block;
 }
 
 /*# sourceMappingURL=style.css.map */

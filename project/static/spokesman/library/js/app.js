@@ -1,13 +1,18 @@
 var jpsJournoList = (function(){
 
+    
     // placeholder for cached DOM elements
     var DOM = {};
 
+    
+    // variables we'll use later
     let navWidth = 0;
     let windowWidth = 0;
     let carouselPaused = false;
     let carouselStopped = false;
 
+    
+    // get all the elements and node lists we'll use later
     function cacheDom(){
         DOM.body = document.body;    
         DOM.journoList = document.getElementById('journo-list');
@@ -18,8 +23,17 @@ var jpsJournoList = (function(){
         cacheMenuItems();
     }
 
+    
+    // add event listeners
     function bindEvents(){ 
+        
+        // bc menu items are so dynamic here, handle those separately
         bindMenuItems();
+
+        // toggle switch for stopping/starting the carousel
+        DOM.carouselButton.addEventListener('click',handleButtonClick);
+        
+        // only clone carousel items once entire page load is finished
         window.addEventListener("load", function(){
             updateValues();
             if( windowWidth > navWidth ){
@@ -27,25 +41,40 @@ var jpsJournoList = (function(){
                 cloneMenuItems(factor);
             }
         });
-        DOM.carouselButton.addEventListener('click',handleButtonClick);
     }
 
+    
     function setUp(){
-        DOM.firstJournoListItem.classList.add('active');
+
+        // add special class to activate the js-enhanced layout
         DOM.body.classList.add('js-enabled');
+
+        // set off the first journo-list item
+        DOM.firstJournoListItem.classList.add('active');
+        
+        // repurpose the text nav into carousel form
         addImgsToNav();
+        
+        // accessibly hide the 'Our Journalists' headline 
+        // now that we're presenting list as carousel
         DOM.jsHide.forEach(function(item){
             item.classList.add('vh');
         });
+
         startCarousel();
     }
 
+    
+    // get window and carousel width values to determine
+    // whether we need to fill blank space with carousel images
     function updateValues(){
         navWidth = DOM.navMenu.clientWidth;
-        console.log(navWidth);
         windowWidth = window.outerWidth;
     }
 
+
+    // use nav data attributes to turn text list 
+    // into thumbnail carousel
     function addImgsToNav(){
         for( let i = 0; i < DOM.navMenuItems.length; i++ ){
             let link = DOM.navMenuItems[i].firstChild;
@@ -55,6 +84,9 @@ var jpsJournoList = (function(){
         }
     }
 
+
+    // cache menu-specific items (best split out as own function
+    // so we can call it throughout the cycle)
     function cacheMenuItems(){
         DOM.nav = document.getElementById('journo-list-nav');
         DOM.navMenu = document.getElementById('journo-list-menu');
@@ -62,6 +94,9 @@ var jpsJournoList = (function(){
         DOM.navMenuLinks = document.querySelectorAll('#journo-list-menu a');
     }
 
+
+    // add menu-specific event listeners separately, as we'll
+    // need to do once on page load and again after adding carousel images
     function bindMenuItems(){
         DOM.navMenuLinks.forEach(item => {
             item.addEventListener('click',handleNavClick);
@@ -72,6 +107,8 @@ var jpsJournoList = (function(){
         });
     }
 
+    
+    // handle the navigation and selection of the carousel list
     function handleNavClick(e){
         e.preventDefault();
         DOM.navMenuLinks.forEach(function(item){
@@ -88,6 +125,8 @@ var jpsJournoList = (function(){
         target.classList.add('active');
     }
 
+    
+    // fade the selected journalist in
     function fade(type, ms, el) {
         
         // set up initial variables
@@ -111,9 +150,11 @@ var jpsJournoList = (function(){
         }
       
         var fading = window.setInterval(func, interval);
-      
     }
 
+    
+    // add extra items to the carousel, to give it the 
+    // feeling of infinite-ness
     function cloneMenuItems( num_times ){
         num_times = Math.floor(num_times);
         for( i = 0; i <= num_times; i++ ){
@@ -123,10 +164,12 @@ var jpsJournoList = (function(){
             });
         }
         DOM.navMenu.style.width = '10000px';
-        cacheMenuItems();
-        bindMenuItems();
+        cacheMenuItems(); // re-cache now that there are new items
+        bindMenuItems(); // re-bind now that there are new items
     }
 
+
+    // pause/un-pause the carousel movement
     function handleButtonClick(e){
         e.preventDefault();
         let action = this.dataset.action;
@@ -141,42 +184,49 @@ var jpsJournoList = (function(){
         }
     }
 
+    
     function startCarousel(){
-        // preferred speed: 75
         carouselStopped = false;
-        setInterval( rollCarousel2, 75 );
+        setInterval( rollCarousel, 75 );
     }
 
-    function pauseCarousel(){
-        carouselPaused = true;
-    }
-
+    
     function stopCarousel(){
         carouselStopped = true;
     }
 
+    
+    // resumes motion but without resetting setInterval
     function unStopCarousel(){
         carouselStopped = false;
     }
 
+    
+    function pauseCarousel(){
+        carouselPaused = true;
+    }
+    
+    
     function resumeCarousel(){
-        console.log("Resuming episode...");
         carouselPaused = false;
     }
 
-    function rollCarousel2(){
+
+    // the actual movement of the carousel
+    function rollCarousel(){
         if(!carouselPaused && !carouselStopped){
             let carousel = DOM.navMenu;
-            let left = carousel.offsetLeft;
-            let next = left - 1;
-            let absLeft = Math.abs(left);
+            let left = carousel.offsetLeft; // get the distance to the edge
+            let next = left - 1; // get the next distance to the edge (assuming -1 increments)
+            let absLeft = Math.abs(left); // convert negative integer to positive
             if( absLeft === navWidth ){
-                carousel.style.left = 0;
+                carousel.style.left = 0; // snap back to 0 if we've reached the end
             } else {
-                carousel.style.left = next + 'px';
+                carousel.style.left = next + 'px'; // else increment down a pixel
             }
         }
     }
+    
     
     // main init method
     function init(){
@@ -186,13 +236,14 @@ var jpsJournoList = (function(){
     }
 
     /* ===== export public methods ===== */
-  
     return {
         init: init
     };
 
 }());
 
+
+// only fire everything once the DOM is ready
 document.addEventListener("DOMContentLoaded", function(){
     jpsJournoList.init();    
 });
