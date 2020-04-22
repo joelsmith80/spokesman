@@ -14,14 +14,7 @@
     @supports(display:grid){
         
         .js-enabled & {
-            padding-bottom: 4rem;
-            /*@supports(display: grid){
-                display: grid;
-                grid-template-rows: auto auto auto;
-                .journo-list-nav {
-                    position: relative;
-                }
-            }*/
+            padding-bottom: 5.25rem; // must correspond with nav height
         }
     }
     

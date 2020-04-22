@@ -16,7 +16,7 @@
 .js-enabled {
 
     .journo-list-nav {
-        bottom: 0;
+        bottom: 1.25rem;
         height: 5rem;
         left: 0;
         margin: 0;
@@ -30,6 +30,29 @@
             width: 10000px;
         }
     }
+
+    p.carousel-buttons {
+        bottom: 0;
+        font-size: 0.7rem;
+        left: 0;
+        line-height: 1;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        button {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            background: none;
+            border: none;
+            color: $red;
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+            }
+        }
+    }
+    
 
     
 

@@ -349,7 +349,7 @@ p {
 }
 
 .js-enabled .journo-list-nav {
-  bottom: 0;
+  bottom: 1.25rem;
   height: 5rem;
   left: 0;
   margin: 0;
@@ -362,6 +362,26 @@ p {
   background: red;
   position: absolute;
   width: 10000px;
+}
+.js-enabled p.carousel-buttons {
+  bottom: 0;
+  font-size: 0.7rem;
+  left: 0;
+  line-height: 1;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+.js-enabled p.carousel-buttons button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  color: #aa1731;
+}
+.js-enabled p.carousel-buttons button:hover, .js-enabled p.carousel-buttons button:focus {
+  text-decoration: underline;
 }
 .js-enabled .journo-list-menu {
   background: red;
@@ -498,14 +518,7 @@ p {
 }*/
 @supports (display: grid) {
   .js-enabled .our-journalists {
-    padding-bottom: 4rem;
-    /*@supports(display: grid){
-        display: grid;
-        grid-template-rows: auto auto auto;
-        .journo-list-nav {
-            position: relative;
-        }
-    }*/
+    padding-bottom: 5.25rem;
   }
 }
 

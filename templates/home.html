@@ -28,14 +28,17 @@
             {% if journoList %}
                 
                 <nav id="journo-list-nav" class="journo-list-nav pl3 mb4">
-                    
-                        <ul id="journo-list-menu" class="journo-list-menu cf list">
-                            {% for j in journoList %}
-                                <li><a href="#{{ j.slug }}" data-thumb-src="{{ j.image }}">{{ j.name }}</a></li>
-                            {% endfor %}
-                        </ul>
+                    <ul id="journo-list-menu" class="journo-list-menu cf list">
+                        {% for j in journoList %}
+                            <li><a href="#{{ j.slug }}" data-thumb-src="{{ j.image }}">{{ j.name }}</a></li>
+                        {% endfor %}
+                    </ul>
                     
                 </nav>
+
+                <p id="button-container" class="carousel-buttons">
+                    <button id="carousel-button" type="button" data-action="stop" data-stop-text="{% trans 'Stop Carousel' %}" data-start-text="{% trans 'Start Carousel' %}">{% trans "Stop Carousel" %}</button>
+                </p>
 
                 <ul id="journo-list" class="journo-list list">
                     {% for j in journoList %}

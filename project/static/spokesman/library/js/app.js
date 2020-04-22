@@ -6,6 +6,7 @@ var jpsJournoList = (function(){
     let navWidth = 0;
     let windowWidth = 0;
     let carouselPaused = false;
+    let carouselStopped = false;
 
     function cacheDom(){
         DOM.body = document.body;
@@ -18,6 +19,7 @@ var jpsJournoList = (function(){
         DOM.journoListItems = document.querySelectorAll('#journo-list li');
         DOM.firstJournoListItem = document.querySelector('#journo-list li');
         DOM.jsHide = document.querySelectorAll('.js-hide');
+        DOM.carouselButton = document.getElementById('carousel-button');
     }
 
     function bindEvents(){
@@ -35,6 +37,7 @@ var jpsJournoList = (function(){
             item.addEventListener('mouseover',pauseCarousel);
             item.addEventListener('mouseout',resumeCarousel);
         });
+        DOM.carouselButton.addEventListener('click',handleButtonClick);
     }
 
     function setUp(){
@@ -128,8 +131,23 @@ var jpsJournoList = (function(){
         DOM.navMenu.style.width = '10000px';
     }
 
+    function handleButtonClick(e){
+        e.preventDefault();
+        let action = this.dataset.action;
+        if(action === 'stop'){
+            stopCarousel();
+            this.dataset.action = 'start';
+            this.innerHTML = this.dataset.startText;
+        } else {
+            unStopCarousel();
+            this.dataset.action = 'stop';
+            this.innerHTML = this.dataset.stopText;
+        }
+    }
+
     function startCarousel(){
         // preferred speed: 75
+        carouselStopped = false;
         setInterval( rollCarousel2, 75 );
     }
 
@@ -137,12 +155,21 @@ var jpsJournoList = (function(){
         carouselPaused = true;
     }
 
+    function stopCarousel(){
+        carouselStopped = true;
+    }
+
+    function unStopCarousel(){
+        carouselStopped = false;
+    }
+
     function resumeCarousel(){
+        console.log("Resuming episode...");
         carouselPaused = false;
     }
 
     function rollCarousel2(){
-        if(!carouselPaused){
+        if(!carouselPaused && !carouselStopped){
             let carousel = DOM.navMenu;
             let left = carousel.offsetLeft;
             let next = left - 1;
