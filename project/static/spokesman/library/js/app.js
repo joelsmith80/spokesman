@@ -5,6 +5,7 @@ var jpsJournoList = (function(){
 
     let navWidth = 0;
     let windowWidth = 0;
+    let carouselPaused = false;
 
     function cacheDom(){
         DOM.body = document.body;
@@ -23,6 +24,17 @@ var jpsJournoList = (function(){
         DOM.navMenuLinks.forEach(item => {
             item.addEventListener('click',handleNavClick);
         });
+        window.addEventListener("load", function(){
+            updateValues();
+            if( windowWidth > navWidth ){
+                let factor = windowWidth / navWidth;
+                cloneMenuItems(factor);
+            }
+        });
+        DOM.navMenuLinks.forEach(function(item){
+            item.addEventListener('mouseover',pauseCarousel);
+            item.addEventListener('mouseout',resumeCarousel);
+        });
     }
 
     function setUp(){
@@ -33,15 +45,7 @@ var jpsJournoList = (function(){
         DOM.jsHide.forEach(function(item){
             item.classList.add('vh');
         });
-        window.addEventListener("load", function(){
-            updateValues();
-            if( windowWidth > navWidth ){
-                let factor = windowWidth / navWidth;
-                cloneMenuItems(factor);
-            }
-        });
-
-        startCarousel2();
+        startCarousel();
 
     }
 
@@ -125,47 +129,30 @@ var jpsJournoList = (function(){
     }
 
     function startCarousel(){
-
-        let carousel = DOM.navMenu;
-        // carousel.style.left = "0px";
-        // console.log(carousel.style.left);
-        // console.log(carousel);
-        // carouselMotion();
-        /*console.log(carousel.offsetLeft);
-
-        carousel.scrollBy(0,1);
-        scrolldelay = setTimeout(pageScroll,10);*/
-
-        (function roll() {
-            let left = carousel.offsetLeft;
-            let next = left - 1;
-            carousel.style.left = next + 'px';
-            requestAnimationFrame(roll);
-            // console.log(left);
-            /*if ((carousel.offsetLeft -= 1) < 0) {
-              console.log("Here we go");
-            } else {
-              requestAnimationFrame(roll);
-            }*/
-        })();
+        // preferred speed: 75
+        setInterval( rollCarousel2, 75 );
     }
 
-    function startCarousel2(){
-        // preferred speed: 75
-        // setInterval( rollCarousel2, 75 );
+    function pauseCarousel(){
+        carouselPaused = true;
+    }
+
+    function resumeCarousel(){
+        carouselPaused = false;
     }
 
     function rollCarousel2(){
-        let carousel = DOM.navMenu;
-        let left = carousel.offsetLeft;
-        let next = left - 1;
-        let absLeft = Math.abs(left);
-        if( absLeft === navWidth ){
-            carousel.style.left = 0;
-        } else {
-            carousel.style.left = next + 'px';
+        if(!carouselPaused){
+            let carousel = DOM.navMenu;
+            let left = carousel.offsetLeft;
+            let next = left - 1;
+            let absLeft = Math.abs(left);
+            if( absLeft === navWidth ){
+                carousel.style.left = 0;
+            } else {
+                carousel.style.left = next + 'px';
+            }
         }
-        
     }
     
     // main init method
