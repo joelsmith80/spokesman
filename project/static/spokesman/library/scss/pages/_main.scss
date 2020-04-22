@@ -34,3 +34,38 @@ p.carousel-buttons {
         display: block;
     }
 }
+
+// just a little extra sugar to make the images
+// and text line up nicely across screen sizes
+.support-list {
+    @media only screen and (min-width: 500px) {
+        @supports( display: grid ){
+            li {
+                display: grid;
+                grid-template-columns: 50% 50%;
+                grid-gap: 1rem;
+                align-items: center;
+                img {
+                    float: none;
+                    padding-right: 0;
+                    width: 100%;
+                }
+                div {
+                    float: none;
+                    padding-left: 0;
+                    width: 100%;
+                }
+            }
+            li:last-child {
+                img {
+                    grid-row: 1/2;
+                    grid-column: 2/3;
+                }
+                div {
+                    grid-row: 1/2;
+                    grid-column: 1/2;
+                }
+            }
+        }
+    }
+}
