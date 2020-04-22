@@ -10,11 +10,16 @@
 .our-journalists {
 
     @supports(display:grid){
+        
         .js-enabled & {
-            padding-bottom: 3rem;
-            .journo-list li:not(:first-child){
-                display: none;
-            }
+            padding-bottom: 4rem;
+            /*@supports(display: grid){
+                display: grid;
+                grid-template-rows: auto auto auto;
+                .journo-list-nav {
+                    position: relative;
+                }
+            }*/
         }
     }
     

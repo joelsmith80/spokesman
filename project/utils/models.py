@@ -3,7 +3,6 @@ from django.conf import settings
 import os
 import json
 
-# Create your models here.
 class Importer(models.Model):
 
     class Meta:

@@ -22,12 +22,12 @@
         </header>
         <section class="our-journalists pb1 pt1 ph3 ph6-m ph7-l pt4 relative">
             
-            <h2 class="vh">{% trans "Our Journalists" %}</h2>
+            <h2 class="js-hide">{% trans "Our Journalists" %}</h2>
 
             {% if journoList %}
-                <nav id="journo-list-nav" class="journo-list-nav">
                 
-                    <ul id="journo-list-menu" class="journo-list-menu cf">
+                <nav id="journo-list-nav" class="journo-list-nav pl3 mb4">
+                    <ul id="journo-list-menu" class="journo-list-menu cf list">
                         {% for j in journoList %}
                             <li><a href="#{{ j.slug }}" data-thumb-src="{{ j.image }}">{{ j.name }}</a></li>
                         {% endfor %}
@@ -39,9 +39,11 @@
                         <li id="{{ j.slug }}" class="relative lh-title pb3 cf">
                             <header class="fr-m fr-l w-60-ns pl3-m pl3-l mb2">
                                 <h3 class="title tr b mb4 mt3">{{ j.name }}</h3>
-                                <p class="tr f6">{{ j.text }}</p>
+                                <p class="tr f7">{{ j.text }}</p>
                             </header>
-                            <img src="{{ j.image }}" alt="{{ j.name }}" class="w-40-ns relative">
+                            <div class="image-space w-40-ns relative">
+                                <img src="{{ j.image }}" alt="{{ j.name }}" class="absolute left-0">
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>

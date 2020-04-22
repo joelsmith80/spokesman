@@ -336,65 +336,146 @@ p {
   text-decoration: underline;
 }
 
+.journo-list-menu {
+  list-style: disc;
+  margin: 0;
+}
 .journo-list-menu img {
+  display: block;
   height: 5rem;
+}
+.journo-list-menu a:hover, .journo-list-menu a:focus {
+  color: #aa1731;
 }
 
 .js-enabled .journo-list-nav {
   bottom: 0;
   height: 5rem;
   left: 0;
+  margin: 0;
   overflow: hidden;
+  padding: 0;
   position: absolute;
   width: 100%;
 }
 .js-enabled .journo-list-menu {
   background: red;
-  /*@supports(display:grid){
-      display: grid;
-      grid-row: 1fr;
-      grid-auto-columns: auto;
-  }*/
 }
 .js-enabled .journo-list-menu li {
+  display: block;
   float: left;
+  list-style: none;
 }
 
-@keyframes slideInFromLeft {
+@keyframes titleSlideOutIn {
   0% {
+    transform: translateX(0%);
+  }
+  25% {
     transform: translateX(-30%);
   }
   100% {
     transform: translateX(0);
   }
 }
+@keyframes textSlideOutIn {
+  0% {
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(-30%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes textFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes wholeThingSlideOutIn {
+  0% {
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(-5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.journo-list li {
+  animation: 0.8s ease-out 0s 1 wholeThingSlideOutIn;
+}
+.journo-list .image-space {
+  height: 0;
+  padding-bottom: 70%;
+}
+.journo-list .image-space img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .journo-list .image-space {
+    padding-bottom: 30%;
+  }
+}
 .journo-list .title {
-  animation: 0.5s ease-out 0s 1 slideInFromLeft;
-  animation-duration: 1s;
+  animation: 0.8s ease-out 0s 1 titleSlideOutIn;
   position: relative;
 }
 .journo-list .title:after {
-  animation: 0.5s ease-out 0s 1 slideInFromLeft;
+  animation: 0.45s ease-in-out 0s 1 textSlideOutIn;
   background: #aa1731;
-  border-top: 2px solid #353535;
+  border-top: 1px solid #353535;
   bottom: -1rem;
   content: "";
   display: block;
   height: 0.6rem;
-  right: -0.5rem;
+  right: 0;
   position: absolute;
   width: 1000%;
 }
 .journo-list p {
-  animation: 1s ease-out 0s 1 slideInFromLeft;
+  animation: 0.75s ease-out 0s 1 textSlideOutIn;
+}
+
+.js-enabled {
+  /*.journo-list li:not(:first-child){
+      display: none;
+  }*/
+}
+.js-enabled .journo-list li {
+  display: block;
+}
+.js-enabled .journo-list li:not(:first-child) {
+  display: none;
 }
 
 @supports (display: grid) {
   .js-enabled .our-journalists {
-    padding-bottom: 3rem;
-  }
-  .js-enabled .our-journalists .journo-list li:not(:first-child) {
-    display: none;
+    padding-bottom: 4rem;
+    /*@supports(display: grid){
+        display: grid;
+        grid-template-rows: auto auto auto;
+        .journo-list-nav {
+            position: relative;
+        }
+    }*/
   }
 }
 
