@@ -2,6 +2,7 @@ from django.db import models
 
 from project.utils.models import Importer
 
+# helper class for global functionality
 class Helper(models.Model):
     
     class Meta:
