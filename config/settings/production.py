@@ -2,17 +2,10 @@ from .base import *
 
 ALLOWED_HOSTS = [
     '207.38.86.214',
-    'classics.joelsmith.webfactional.com',
-    'fantasycycle.com',
-    'vuelta.fantasycycle.com',
-    'giro.fantasycycle.com',
-    'tour.fantasycycle.com'
+    'http://jps-spokesman.herokuapp.com/',
+    '127.0.0.1',
+    'localhost',
 ]
-
-SESSION_COOKIE_DOMAIN = '.fantasycycle.com'
-SESSION_COOKIE_NAME = 'fantasymanagersessionid'
-
-DEFAULT_HOST = 'global'
 
 DEBUG = env.bool('DJANGO_DEBUG',False)
 # DEBUG = False
@@ -21,16 +14,13 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'classics',
-        'USER': 'joelsmith',
-        'PASSWORD': '@11YourB@se',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dek82no2ghlt4i',
+        'USER': 'oiawduovfrllgv',
+        'PASSWORD': 'b0eb42d04d96d84aa056ce372dc5925b2a557a52488a3a12672eb61b16934720',
+        'HOST': 'ec2-18-206-84-251.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
-
-EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-SENDGRID_API_KEY = env('SENDGRID_API_KEY')
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
