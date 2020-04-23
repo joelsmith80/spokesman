@@ -1,2 +1,1 @@
-# modern-django
-Modern Django: Following along with Dylan Stein
+# Joel Smith S-R Demo
