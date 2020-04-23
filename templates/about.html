@@ -1,0 +1,38 @@
+<!-- templates/about.html -->
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}Spokesman-Review Demo{% endblock %}
+
+{% block content %}
+
+    <header class="pb1 pt1 ph3 ph5-m ph7-l mt4 mb4">
+        <a href="/" class="about-back-link f7">Back</a>
+        <h1 class="fw2 f2 mb2 black-80">My Approach</h1>
+        <p class="fw2 f5 lh-title">Just a couple of notes on how I approached the project. Not all of this stuff was called for, perhaps, but I wanted to demonstrate where I'm coming from as a developer.</p>
+    </header>
+
+    <section class="ph3 pb4 ph5-m ph7-l black-80">
+        <h2 class="fw2 mb2 mt2">Full-Stack</h2>
+        <p class="lh-title mb3">As this is a full-stack position, I've built my project using Django. That's probably ridiculous overkill -- I'm barely using any models, and there's no database to speak of -- but I wanted to show my work. To make the Tachyon markup easier to manage, I also wanted to lay it out with a loop (without relying on Javascript). So I'm importing your JS file as JSON using Python, and passing it from the view to the template, where it's laid out as server-side HTML.</p>
+        
+        <h2 class="fw2 mb2 mt4">Tachyons</h2>
+        <p class="lh-title mb3">This was a new framework for me. I've been a little uncomfortable, in the past, with styling conventions that lean so heavily on class names, but once I got the hang of it, I definitely appreciated the ease and speed with which I could lay everything out. I ended up writing much less CSS than usual. (The only area where I felt constrained was in progressive enhancement -- styling certain components based on the presence of Javascript. See Progressive Enhancement, below.)</p>
+        
+        <h2 class="fw2 mb2 mt4">Mobile-Responsiveness</h2>
+        <p class="lh-title mb3">All of my front-end work is mobile-first, and I took that approach here, too. Obviously I'm still getting the hang of Tachyons and its breakpoints, but the project should still look pretty good on a phone.</p>
+        
+        <h2 class="fw2 mb2 mt4">Progressive Enhancement</h2>
+        <p class="lh-title mb3">I believe the web is for everybody, so I've always developed with progressive enhancement in mind. To that end, I try to make my web pages look and feel as snazzy and complete as possible with just bedrock HTML and CSS, and then layer Javascript on for extra effect. In this case, users without Javascript enabled will still get all of the images and descriptions of all the reporters and photographers -- just in a simple list form, with an introductory navigation menu. More advanced browsers, meanwhile, will see that nav menu transformed into the full carousel treatment.</p>
+        
+        <h2 class="fw2 mb2 mt4">Accessibility</h2>
+        <p class="lh-title mb3">To make sure that all users could make sense of the page, I started with a clean, valid document outline and helpful alt text.</p>
+        <p class="lh-title mb3">Because the carousel format could be confusing for someone consuming the site with a screen reader, the carousel itself is built out of a nav menu. That way, users should be able to navigate the list of journalists using a keyboard, opening their names and descriptions in turn.</p>
+        <p class="lh-title mb3">It's not in the design, but I've also included a start/stop button for the carousel animation, as users with motion issues can find the endless scroll disorienting. (Even <em>I</em> found myself wanting to get off the ride now and then!)</p>
+        <p class="lh-title mb3">There are shortcomings to my approach, though. For instance, to pull off the infinite scroll, I had to clone menu items and append them to the end of the list. A blind user who didn't know they were navigating through a carousel would be confused to find each staffer coming up again and again and again...</p>
+        
+        <h2 class="fw2 mb2 mt4">i18n</h2>
+        <p class="lh-title mb3">It's a minor thing, but using Django also allowed me to easily make some of the more static "theme" strings translatable. Even the start/stop button was made translatable, by passing the translated strings to the element as data attributes, and making the Javascript file do its text replacement using those values.</p>
+    </section>
+
+{% endblock %}

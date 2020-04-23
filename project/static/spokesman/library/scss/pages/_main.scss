@@ -69,3 +69,16 @@ p.carousel-buttons {
         }
     }
 }
+
+// the little disclaimer at the bottom
+.disclaimer {
+    background: $red;
+    a {
+        color: white;
+        text-decoration: none;
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}

@@ -1,82 +1,75 @@
-{% load static %}
+<!-- templates/home.html -->
+{% extends 'base.html' %}
 {% load i18n %}
 
-<!-- templates/home.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Spokesman-Review Demo</title>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'spokesman/library/css/style.css' %}">
-    <script src="{% static 'spokesman/library/js/app.js' %}"></script>
-</head>
+{% block title %}Spokesman-Review Demo{% endblock %}
 
-<body class="helvetica">
-    <div id="main" class="">
-        <header class="pb1 pt1 ph3 ph6-m ph7-l">
-            <h1 class="fw2 f2 mb2"><b>The Spokesman-Review's</b> local journalism has never been more important to this community. And now we need your help.</h1>
-            <p class="fw2 f5 lh-title">The reporters, photographers, designers, and editors in our newsroom are working hard to keep Eastern Washington and North Idaho informed as the news seemingly changes minute-by-minute. We've even made parts of our website free. But the newsroom that tells all of these stories now depends on you and your support for our journalism.</p>
-        </header>
-        <section class="our-journalists pb1 pt1 ph3 ph6-m ph7-l pt4 relative">
+{% block content %}
+
+    <header class="pb1 pt1 ph3 ph5-m ph7-l pt4">
+        <h1 class="fw2 f2 mb2"><b>The Spokesman-Review's</b> local journalism has never been more important to this community. And now we need your help.</h1>
+        <p class="fw2 f5 lh-title">The reporters, photographers, designers, and editors in our newsroom are working hard to keep Eastern Washington and North Idaho informed as the news seemingly changes minute-by-minute. We've even made parts of our website free. But the newsroom that tells all of these stories now depends on you and your support for our journalism.</p>
+    </header>
+    <section class="our-journalists pb1 pt1 ph3 ph5-m ph7-l pt4 relative">
+        
+        <h2 class="js-hide">{% trans "Our Journalists" %}</h2>
+
+        {% if journoList %}
             
-            <h2 class="js-hide">{% trans "Our Journalists" %}</h2>
-
-            {% if journoList %}
-                
-                <nav id="journo-list-nav" class="journo-list-nav pl3 mb4">
-                    <ul id="journo-list-menu" class="journo-list-menu cf list">
-                        {% for j in journoList %}
-                            <li><a href="#{{ j.slug }}" data-thumb-src="{{ j.image }}">{{ j.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                    
-                </nav>
-
-                <p id="button-container" class="carousel-buttons">
-                    <button id="carousel-button" type="button" data-action="stop" data-stop-text="{% trans 'Stop Carousel' %}" data-start-text="{% trans 'Start Carousel' %}">{% trans "Stop Carousel" %}</button>
-                </p>
-
-                <ul id="journo-list" class="journo-list list">
+            <nav id="journo-list-nav" class="journo-list-nav pl3 mb4">
+                <ul id="journo-list-menu" class="journo-list-menu cf list">
                     {% for j in journoList %}
-                        <li id="{{ j.slug }}" class="relative lh-title pb3 cf">
-                            <header class="fr-m fr-l w-60-ns pl3-m pl3-l mb2">
-                                <h3 class="title tr b mb4 mt3">{{ j.name }}</h3>
-                                <p class="tr f7">{{ j.text }}</p>
-                            </header>
-                            <div class="image-space w-40-ns relative">
-                                <img src="{{ j.image }}" alt="{{ j.name }}" class="absolute left-0">
-                            </div>
-                        </li>
+                        <li><a href="#{{ j.slug }}" data-thumb-src="{{ j.image }}">{{ j.name }}</a></li>
                     {% endfor %}
                 </ul>
-            
-            {% endif %}
-      
-        </section>
-      
-        <section class="ph3 ph6-m ph7-l pt6">
-            <h2 class="f5 tc mb4">{% trans "How you can support our local journalism" %}</h2>
-            <ol class="support-list list mb4">
-                <li class="mb4">
-                    <img src="https://media.spokesman.com/photos/2020/03/25/NewsFronts_01.png" alt="Spokesman-Review front pages 1" class="w-50-ns mb1 mb0-ns pr1-ns">
-                    <div class="fr-ns w-50-ns pl1-ns">
-                        <p class="tj f7 mb2">One of the best and easiest ways to help keep our newsroom's local journalism alive is simply to subscribe. As our thank you, this link will take you to the most inexpensive subscription rates available. Unlimited access to our website and the e-edition of our newspaper starts at only 99¢ a month for the first two months. Home delivery and unlimited web access is as low as $1 a week.</p>
-                        <p><a href="#" class="btn w-100 f7 b">{% trans "Subscribe" %}</a></p>
-                        <p class="tc"><small>or call Customer Care at (509) 747-4422</small></p>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://media.spokesman.com/photos/2020/03/25/NewsFronts_02.png" alt="Spokesman-Review front pages 2" class="w-50-ns pl1-ns">
-                    <div class="fl-ns w-50-ns pr1-ns">
-                        <p class="tj f7 mb2">The Spokesman-Review works with local and national foundations to help fund some of the journalism in our newspaper. What makes this partnership unique is that we are one of the only news organizations in the nation to then release the copyright of these stories publicly through Creative Commons. That means the journalism funded by our community is actually owned by our community, not by our newspaper. All of this money goes directly to offsetting the salaries of reporters in our newsroom and is tax-deductible.</p>
-                        <p><a href="#" class="btn w-100 f7 b">{% trans "Donate" %}</a></p>
-                    </div>
-                </li>
-            </ol>
-        </section>
-    </div>
-</body>
-</html>
+                
+            </nav>
+
+            <p id="button-container" class="carousel-buttons">
+                <button id="carousel-button" type="button" data-action="stop" data-stop-text="{% trans 'Stop Carousel' %}" data-start-text="{% trans 'Start Carousel' %}">{% trans "Stop Carousel" %}</button>
+            </p>
+
+            <ul id="journo-list" class="journo-list list">
+                {% for j in journoList %}
+                    <li id="{{ j.slug }}" class="relative lh-title pb3 cf">
+                        <header class="fr-m fr-l w-60-ns pl3-m pl3-l mb2">
+                            <h3 class="title tr b mb4 mt3">{{ j.name }}</h3>
+                            <p class="tr f7">{{ j.text }}</p>
+                        </header>
+                        <div class="image-space w-40-ns relative">
+                            <img src="{{ j.image }}" alt="{{ j.name }}" class="absolute left-0">
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        
+        {% endif %}
+    
+    </section>
+    
+    <section class="ph3 ph5-m ph7-l pt6">
+        <h2 class="f5 tc mb4">{% trans "How you can support our local journalism" %}</h2>
+        <ol class="support-list list mb4">
+            <li class="mb4">
+                <img src="https://media.spokesman.com/photos/2020/03/25/NewsFronts_01.png" alt="Spokesman-Review front pages 1" class="w-50-ns mb1 mb0-ns pr1-ns">
+                <div class="fr-ns w-50-ns pl1-ns">
+                    <p class="tj f7 mb2">One of the best and easiest ways to help keep our newsroom's local journalism alive is simply to subscribe. As our thank you, this link will take you to the most inexpensive subscription rates available. Unlimited access to our website and the e-edition of our newspaper starts at only 99¢ a month for the first two months. Home delivery and unlimited web access is as low as $1 a week.</p>
+                    <p><a href="#" class="btn w-100 f7 b">{% trans "Subscribe" %}</a></p>
+                    <p class="tc"><small>or call Customer Care at (509) 747-4422</small></p>
+                </div>
+            </li>
+            <li>
+                <img src="https://media.spokesman.com/photos/2020/03/25/NewsFronts_02.png" alt="Spokesman-Review front pages 2" class="w-50-ns pl1-ns">
+                <div class="fl-ns w-50-ns pr1-ns">
+                    <p class="tj f7 mb2">The Spokesman-Review works with local and national foundations to help fund some of the journalism in our newspaper. What makes this partnership unique is that we are one of the only news organizations in the nation to then release the copyright of these stories publicly through Creative Commons. That means the journalism funded by our community is actually owned by our community, not by our newspaper. All of this money goes directly to offsetting the salaries of reporters in our newsroom and is tax-deductible.</p>
+                    <p><a href="#" class="btn w-100 f7 b">{% trans "Donate" %}</a></p>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <section class="disclaimer ph3 ph5-m ph7-l mt6 pt2 pb2">
+        <p class="f7"><a href="/about">About this project</a></p>
+    </section>
+
+{% endblock %}

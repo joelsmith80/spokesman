@@ -1,0 +1,23 @@
+{% load static %}
+{% load i18n %}
+
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'spokesman/library/css/style.css' %}">
+    <script src="{% static 'spokesman/library/js/app.js' %}"></script>
+</head>
+
+<body class="helvetica">
+    <main id="main" class="">
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

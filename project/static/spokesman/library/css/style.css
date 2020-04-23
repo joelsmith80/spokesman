@@ -544,4 +544,19 @@ p.carousel-buttons button:hover, p.carousel-buttons button:focus {
   }
 }
 
+.disclaimer {
+  background: #aa1731;
+}
+.disclaimer a {
+  color: white;
+  text-decoration: none;
+}
+.disclaimer a:hover, .disclaimer a:focus {
+  text-decoration: underline;
+}
+
+.about-back-link {
+  color: #aa1731;
+}
+
 /*# sourceMappingURL=style.css.map */
